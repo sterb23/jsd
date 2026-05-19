@@ -1,125 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Trading Clicker Game</title>
+  <meta charset="UTF-8">
+  <title>Clicker Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #111;
+      color: white;
+      margin-top: 50px;
+    }
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial;
-  background: #0b0f14;
-  color: white;
-  text-align: center;
-}
+    h1 {
+      color: #00ffcc;
+    }
 
-.container {
-  margin-top: 80px;
-}
+    .score {
+      font-size: 2em;
+      margin: 20px;
+    }
 
-.card {
-  background: #111827;
-  padding: 20px;
-  margin: 10px auto;
-  width: 300px;
-  border-radius: 10px;
-}
+    button {
+      padding: 15px 25px;
+      font-size: 18px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
 
-button {
-  padding: 10px;
-  margin-top: 10px;
-  background: #2563eb;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
+    .click-btn {
+      background: #00ffcc;
+    }
 
-button:hover {
-  background: #1d4ed8;
-}
+    .click-btn:hover {
+      background: #00ccaa;
+    }
 
-.big {
-  font-size: 40px;
-  margin: 20px;
-}
+    .upgrade-btn {
+      background: #ffcc00;
+    }
 
-.upgrade {
-  background: #1f2937;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 8px;
-}
-</style>
+    .upgrade-btn:hover {
+      background: #e6b800;
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
+  <h1>Clicker Game</h1>
 
-  <h1>💰 Trading Clicker</h1>
-
-  <div class="card">
-    <div class="big">$<span id="money">100</span></div>
-    <button onclick="earn()">Trade (+$1)</button>
+  <div class="score">
+    Points: <span id="score">0</span>
   </div>
 
-  <div class="card">
-    <h3>Upgrades</h3>
+  <button class="click-btn" onclick="addScore()">Click Me!</button>
 
-    <div class="upgrade">
-      Auto Trader (+$1/sec)<br>
-      Cost: $50<br>
-      <button onclick="buyAuto()">Buy</button>
-    </div>
-
-    <div class="upgrade">
-      Better Trades (+$5/click)<br>
-      Cost: $200<br>
-      <button onclick="buyPower()">Buy</button>
-    </div>
-
+  <div>
+    <button class="upgrade-btn" onclick="buyUpgrade()">
+      Upgrade Click (+1 per click) - Cost: <span id="upgradeCost">10</span>
+    </button>
   </div>
 
-</div>
+  <div>
+    <button class="upgrade-btn" onclick="buyAutoClicker()">
+      Auto Clicker (+1/sec) - Cost: <span id="autoCost">50</span>
+    </button>
+  </div>
 
-<script>
-let money = 100;
-let clickValue = 1;
-let auto = 0;
+  <script>
+    let score = 0;
+    let perClick = 1;
 
-function update(){
-  document.getElementById("money").innerText = money.toFixed(0);
-}
+    let upgradeCost = 10;
+    let autoCost = 50;
 
-function earn(){
-  money += clickValue;
-  update();
-}
+    let autoClickers = 0;
 
-function buyAuto(){
-  if(money >= 50){
-    money -= 50;
-    auto += 1;
-    update();
-  }
-}
+    function updateDisplay() {
+      document.getElementById("score").innerText = score;
+      document.getElementById("upgradeCost").innerText = upgradeCost;
+      document.getElementById("autoCost").innerText = autoCost;
+    }
 
-function buyPower(){
-  if(money >= 200){
-    money -= 200;
-    clickValue += 5;
-    update();
-  }
-}
+    function addScore() {
+      score += perClick;
+      updateDisplay();
+    }
 
-setInterval(() => {
-  money += auto;
-  update();
-}, 1000);
+    function buyUpgrade() {
+      if (score >= upgradeCost) {
+        score -= upgradeCost;
+        perClick += 1;
+        upgradeCost = Math.floor(upgradeCost * 1.5);
+        updateDisplay();
+      } else {
+        alert("Not enough points!");
+      }
+    }
 
-update();
-</script>
+    function buyAutoClicker() {
+      if (score >= autoCost) {
+        score -= autoCost;
+        autoClickers += 1;
+        autoCost = Math.floor(autoCost * 1.7);
+        updateDisplay();
+      } else {
+        alert("Not enough points!");
+      }
+    }
+
+    setInterval(() => {
+      score += autoClickers;
+      updateDisplay();
+    }, 1000);
+
+    updateDisplay();
+  </script>
 
 </body>
 </html>

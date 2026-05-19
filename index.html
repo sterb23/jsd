@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Trading Clicker Game</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0b0f14;
+  color: white;
+  text-align: center;
+}
+
+.container {
+  margin-top: 80px;
+}
+
+.card {
+  background: #111827;
+  padding: 20px;
+  margin: 10px auto;
+  width: 300px;
+  border-radius: 10px;
+}
+
+button {
+  padding: 10px;
+  margin-top: 10px;
+  background: #2563eb;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+.big {
+  font-size: 40px;
+  margin: 20px;
+}
+
+.upgrade {
+  background: #1f2937;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>💰 Trading Clicker</h1>
+
+  <div class="card">
+    <div class="big">$<span id="money">100</span></div>
+    <button onclick="earn()">Trade (+$1)</button>
+  </div>
+
+  <div class="card">
+    <h3>Upgrades</h3>
+
+    <div class="upgrade">
+      Auto Trader (+$1/sec)<br>
+      Cost: $50<br>
+      <button onclick="buyAuto()">Buy</button>
+    </div>
+
+    <div class="upgrade">
+      Better Trades (+$5/click)<br>
+      Cost: $200<br>
+      <button onclick="buyPower()">Buy</button>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+let money = 100;
+let clickValue = 1;
+let auto = 0;
+
+function update(){
+  document.getElementById("money").innerText = money.toFixed(0);
+}
+
+function earn(){
+  money += clickValue;
+  update();
+}
+
+function buyAuto(){
+  if(money >= 50){
+    money -= 50;
+    auto += 1;
+    update();
+  }
+}
+
+function buyPower(){
+  if(money >= 200){
+    money -= 200;
+    clickValue += 5;
+    update();
+  }
+}
+
+setInterval(() => {
+  money += auto;
+  update();
+}, 1000);
+
+update();
+</script>
+
+</body>
+</html>

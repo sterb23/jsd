@@ -1,124 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Clicker Game</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: #111;
-      color: white;
-      margin-top: 50px;
-    }
-
-    h1 {
-      color: #00ffcc;
-    }
-
-    .score {
-      font-size: 2em;
-      margin: 20px;
-    }
-
-    button {
-      padding: 15px 25px;
-      font-size: 18px;
-      margin: 10px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .click-btn {
-      background: #00ffcc;
-    }
-
-    .click-btn:hover {
-      background: #00ccaa;
-    }
-
-    .upgrade-btn {
-      background: #ffcc00;
-    }
-
-    .upgrade-btn:hover {
-      background: #e6b800;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Engine Split Clicker</title>
+<style>
+body { font-family: Arial; background:#050814; color:white; text-align:center; }
+button { padding:10px; margin:5px; }
+.click { background:#00ffd5; font-size:20px; }
+.shop { background:#ffcc00; }
+</style>
 </head>
 <body>
 
-  <h1>Clicker Game</h1>
+<h1>⚙️ ENGINE SPLIT CLICKER</h1>
 
-  <div class="score">
-    Points: <span id="score">0</span>
-  </div>
+<div>Energy: <span id="energy">0</span></div>
+<div>Universe: <span id="universe">0</span></div>
 
-  <button class="click-btn" onclick="addScore()">Click Me!</button>
+<br>
 
-  <div>
-    <button class="upgrade-btn" onclick="buyUpgrade()">
-      Upgrade Click (+1 per click) - Cost: <span id="upgradeCost">10</span>
-    </button>
-  </div>
+<button class="click" onclick="Game.click()">CLICK ⚡</button>
 
-  <div>
-    <button class="upgrade-btn" onclick="buyAutoClicker()">
-      Auto Clicker (+1/sec) - Cost: <span id="autoCost">50</span>
-    </button>
-  </div>
+<br><br>
 
-  <script>
-    let score = 0;
-    let perClick = 1;
+<button class="shop" onclick="Game.upgrade('core')">Upgrade Core</button>
+<button class="shop" onclick="Game.upgrade('drone')">Drone</button>
 
-    let upgradeCost = 10;
-    let autoCost = 50;
+<script src="shared/config.js"></script>
+<script src="server/universeEngine.js"></script>
+<script src="server/balanceAI.js"></script>
 
-    let autoClickers = 0;
-
-    function updateDisplay() {
-      document.getElementById("score").innerText = score;
-      document.getElementById("upgradeCost").innerText = upgradeCost;
-      document.getElementById("autoCost").innerText = autoCost;
-    }
-
-    function addScore() {
-      score += perClick;
-      updateDisplay();
-    }
-
-    function buyUpgrade() {
-      if (score >= upgradeCost) {
-        score -= upgradeCost;
-        perClick += 1;
-        upgradeCost = Math.floor(upgradeCost * 1.5);
-        updateDisplay();
-      } else {
-        alert("Not enough points!");
-      }
-    }
-
-    function buyAutoClicker() {
-      if (score >= autoCost) {
-        score -= autoCost;
-        autoClickers += 1;
-        autoCost = Math.floor(autoCost * 1.7);
-        updateDisplay();
-      } else {
-        alert("Not enough points!");
-      }
-    }
-
-    setInterval(() => {
-      score += autoClickers;
-      updateDisplay();
-    }, 1000);
-
-    updateDisplay();
-  </script>
+<script src="client/api.js"></script>
+<script src="client/game.js"></script>
+<script src="client/ui.js"></script>
 
 </body>
 </html>

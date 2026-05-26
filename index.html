@@ -3,37 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GamingJoy | Your Ultimate Gaming Setup</title>
+    <title>GamingJoy | Minimalist Gaming Excellence</title>
     <style>
-        /* CSS Variables for easy theme management */
+        /* CSS Variables for Elegant Minimalist Theme */
         :root {
-            --primary-color: #00ffcc;
-            --secondary-color: #bc13fe;
-            --bg-color: #0b0c10;
-            --text-color: #c5c6c7;
+            --bg-dark: #0a0a0c;
+            --bg-card: #121216;
+            --text-main: #f0f0f0;
+            --text-muted: #888888;
+            --accent: #ffffff;
+            --border-color: #222226;
         }
 
-        /* Basic Reset */
+        /* Basic Reset & Typography */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-        /* Animated Gradient Background */
         body {
-            background: linear-gradient(-45deg, #0b0c10, #1f2833, #1a0033, #001a1a);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: var(--text-color);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             overflow-x: hidden;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            -webkit-font-smoothing: antialiased;
         }
 
         /* Navigation Bar */
@@ -41,50 +35,62 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 50px;
-            background: rgba(11, 12, 16, 0.8);
-            backdrop-filter: blur(10px);
-            position: sticky;
+            padding: 25px 60px;
+            position: fixed;
+            width: 100%;
             top: 0;
             z-index: 100;
-            border-bottom: 2px solid var(--secondary-color);
+            background: rgba(10, 10, 12, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
         }
 
         .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: white;
-            text-shadow: 0 0 10px var(--secondary-color);
-            letter-spacing: 2px;
+            font-size: 22px;
+            font-weight: 300;
+            color: var(--text-main);
+            letter-spacing: 1px;
         }
 
         .logo span {
-            color: var(--primary-color);
-            text-shadow: 0 0 10px var(--primary-color);
+            font-weight: 600;
         }
 
         .nav-links a {
-            color: white;
+            color: var(--text-muted);
             text-decoration: none;
-            margin: 0 15px;
-            font-size: 18px;
+            margin: 0 20px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
             transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: var(--primary-color);
-            text-shadow: 0 0 8px var(--primary-color);
+            color: var(--accent);
         }
 
-        /* Hero Section with Video */
+        /* Hero Section */
         .hero {
-            height: 80vh;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             position: relative;
             overflow: hidden;
+        }
+
+        /* Subtle Video Overlay */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 12, 0.7); /* Darkens the video for readability */
+            z-index: 1;
         }
 
         .hero-video {
@@ -95,200 +101,265 @@
             min-height: 100%;
             width: auto;
             height: auto;
-            z-index: -1;
+            z-index: 0;
             transform: translateX(-50%) translateY(-50%);
-            opacity: 0.3; /* Keeps the text readable */
+            filter: grayscale(100%); /* Elegant black and white video effect */
             pointer-events: none;
         }
 
         .hero-content {
-            z-index: 1;
+            z-index: 2;
             padding: 20px;
+            max-width: 800px;
         }
 
         .hero-content h1 {
-            font-size: 4rem;
-            color: white;
+            font-size: 4.5rem;
+            font-weight: 200;
+            letter-spacing: -1px;
             margin-bottom: 20px;
-            text-shadow: 0 0 15px var(--secondary-color);
-            animation: slideDown 1s ease-out;
+            animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
         }
 
         .hero-content p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            animation: fadeIn 2s ease-in;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+            opacity: 0;
+            transform: translateY(30px);
         }
 
-        @keyframes slideDown {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Animated Buttons */
+        /* Minimalist Button */
         .btn {
             display: inline-block;
-            padding: 15px 40px;
-            font-size: 18px;
-            font-weight: bold;
-            color: var(--bg-color);
-            background: var(--primary-color);
-            border: none;
-            border-radius: 30px;
+            padding: 16px 45px;
+            font-size: 13px;
+            color: var(--text-main);
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 0; /* Sharp, elegant edges */
             text-decoration: none;
-            cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px var(--primary-color);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: rotate(45deg);
-            transition: all 0.3s ease;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
             opacity: 0;
+            transform: translateY(30px);
         }
 
         .btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 30px var(--primary-color), 0 0 10px white;
-            background: white;
-        }
-
-        .btn:hover::after {
-            opacity: 1;
-            left: 100%;
+            background: var(--accent);
+            color: var(--bg-dark);
+            border-color: var(--accent);
         }
 
         /* Store Section */
         .store {
-            padding: 80px 50px;
-            text-align: center;
+            padding: 120px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        .store h2 {
-            font-size: 2.5rem;
-            color: white;
-            margin-bottom: 40px;
-            text-shadow: 0 0 10px var(--primary-color);
+        .store-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 60px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        .store-header h2 {
+            font-size: 2rem;
+            font-weight: 300;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
         }
 
+        /* Minimalist Product Cards */
         .card {
-            background: rgba(31, 40, 51, 0.6);
-            border: 1px solid var(--secondary-color);
-            border-radius: 15px;
-            padding: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: transparent;
+            cursor: pointer;
+            transition: transform 0.4s ease;
         }
 
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(188, 19, 254, 0.4);
+            transform: translateY(-8px);
+        }
+
+        .img-container {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            background: var(--bg-card);
+            margin-bottom: 20px;
         }
 
         .card img {
             width: 100%;
-            height: 200px;
+            height: 100%;
             object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 15px;
+            transition: transform 0.6s ease;
+            opacity: 0.9;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+
+        .card-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
         }
 
         .card h3 {
-            color: white;
-            margin-bottom: 10px;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .card p.category {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .price {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            font-weight: bold;
-            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            font-weight: 300;
+        }
+
+        /* Keyframes */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Footer */
         footer {
-            text-align: center;
-            padding: 30px;
-            background: #0b0c10;
-            border-top: 1px solid #1f2833;
+            padding: 40px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 3rem; }
+            nav { padding: 20px; flex-direction: column; gap: 15px; }
+            .store { padding: 80px 20px; }
+            .store-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            footer { flex-direction: column; gap: 20px; text-align: center; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Navigation -->
     <nav>
         <div class="logo">Gaming<span>Joy</span></div>
         <div class="nav-links">
             <a href="#home">Home</a>
-            <a href="#store">Store</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+            <a href="#collection">Collection</a>
+            <a href="#about">Philosophy</a>
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <header class="hero" id="home">
+        <div class="video-overlay"></div>
+        <!-- Abstract dark grayscale video for an elegant background -->
         <video autoplay loop muted playsinline class="hero-video">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-connection-with-nodes-and-lines-27364-large.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-ink-swirling-in-water-2751-large.mp4" type="video/mp4">
         </video>
 
         <div class="hero-content">
-            <h1>Level Up Your Setup</h1>
-            <p>Premium gear for hardcore gamers. Experience the joy of winning.</p>
-            <a href="#store" class="btn">Shop Now</a>
+            <h1>Refine Your Gameplay</h1>
+            <p>Curated, high-performance equipment for the modern enthusiast. No clutter. Pure performance.</p>
+            <a href="#collection" class="btn">Explore Collection</a>
         </div>
     </header>
 
-    <section class="store" id="store">
-        <h2>Featured Gear</h2>
+    <!-- Store Section -->
+    <section class="store" id="collection">
+        <div class="store-header">
+            <h2>The Essentials Collection</h2>
+            <a href="#" style="color: var(--text-muted); text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">View All</a>
+        </div>
+
         <div class="grid">
+            <!-- Product 1: Logitech Mouse -->
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=500&auto=format&fit=crop&q=60" alt="Gaming Headset">
-                <h3>ProAudio Headset X1</h3>
-                <p class="price">$129.99</p>
-                <button class="btn" style="padding: 10px 20px; font-size: 14px;">Add to Cart</button>
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1527814050087-379381547330?w=800&auto=format&fit=crop&q=80" alt="Logitech G Pro X Superlight">
+                </div>
+                <div class="card-info">
+                    <div>
+                        <h3>Logitech G Pro X Superlight</h3>
+                        <p class="category">Wireless Gaming Mouse</p>
+                    </div>
+                    <span class="price">$159.99</span>
+                </div>
             </div>
             
+            <!-- Product 2: Wooting Keyboard -->
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1615663245857-ac93bb5c81f3?w=500&auto=format&fit=crop&q=60" alt="Mechanical Keyboard">
-                <h3>ClickMaster RGB Keyboard</h3>
-                <p class="price">$89.99</p>
-                <button class="btn" style="padding: 10px 20px; font-size: 14px;">Add to Cart</button>
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1595225476474-87563907a212?w=800&auto=format&fit=crop&q=80" alt="Wooting 60HE">
+                </div>
+                <div class="card-info">
+                    <div>
+                        <h3>Wooting 60HE Analog</h3>
+                        <p class="category">Mechanical Keyboard</p>
+                    </div>
+                    <span class="price">$174.99</span>
+                </div>
             </div>
 
+            <!-- Product 3: ASUS ROG Monitor -->
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1605773527852-c546a8584ea3?w=500&auto=format&fit=crop&q=60" alt="Gaming Mouse">
-                <h3>Precision Mouse V2</h3>
-                <p class="price">$59.99</p>
-                <button class="btn" style="padding: 10px 20px; font-size: 14px;">Add to Cart</button>
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=800&auto=format&fit=crop&q=80" alt="ASUS ROG Swift OLED PG27AQDM">
+                </div>
+                <div class="card-info">
+                    <div>
+                        <h3>ASUS ROG Swift OLED</h3>
+                        <p class="category">27" 240Hz Gaming Monitor</p>
+                    </div>
+                    <span class="price">$999.00</span>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 GamingJoy. Built for gamers, by gamers.</p>
+        <div class="logo" style="font-size: 18px;">Gaming<span>Joy</span></div>
+        <p>&copy; 2026 GamingJoy Ltd. All rights reserved.</p>
+        <div style="text-transform: uppercase; letter-spacing: 2px;">
+            Designed in Czechia
+        </div>
     </footer>
 
 </body>

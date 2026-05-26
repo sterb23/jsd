@@ -1,29 +1,295 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Omniverse Clicker</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GamingJoy | Your Ultimate Gaming Setup</title>
+    <style>
+        /* CSS Variables for easy theme management */
+        :root {
+            --primary-color: #00ffcc;
+            --secondary-color: #bc13fe;
+            --bg-color: #0b0c10;
+            --text-color: #c5c6c7;
+        }
+
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Animated Gradient Background */
+        body {
+            background: linear-gradient(-45deg, #0b0c10, #1f2833, #1a0033, #001a1a);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(11, 12, 16, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 0 10px var(--secondary-color);
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+            text-shadow: 0 0 8px var(--primary-color);
+        }
+
+        /* Hero Section with Video */
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            transform: translateX(-50%) translateY(-50%);
+            opacity: 0.3; /* Keeps the text readable */
+            pointer-events: none;
+        }
+
+        .hero-content {
+            z-index: 1;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px var(--secondary-color);
+            animation: slideDown 1s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            animation: fadeIn 2s ease-in;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Animated Buttons */
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--bg-color);
+            background: var(--primary-color);
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px var(--primary-color), 0 0 10px white;
+            background: white;
+        }
+
+        .btn:hover::after {
+            opacity: 1;
+            left: 100%;
+        }
+
+        /* Store Section */
+        .store {
+            padding: 80px 50px;
+            text-align: center;
+        }
+
+        .store h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: rgba(31, 40, 51, 0.6);
+            border: 1px solid var(--secondary-color);
+            border-radius: 15px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(188, 19, 254, 0.4);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #0b0c10;
+            border-top: 1px solid #1f2833;
+        }
+    </style>
 </head>
 <body>
 
-<h1>🌌 Omniverse Clicker</h1>
+    <nav>
+        <div class="logo">Gaming<span>Joy</span></div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#store">Store</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
 
-<div>Energy: <span id="energy">0</span></div>
-<div>Universe: <span id="universe">0</span></div>
+    <header class="hero" id="home">
+        <video autoplay loop muted playsinline class="hero-video">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-connection-with-nodes-and-lines-27364-large.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
 
-<br>
+        <div class="hero-content">
+            <h1>Level Up Your Setup</h1>
+            <p>Premium gear for hardcore gamers. Experience the joy of winning.</p>
+            <a href="#store" class="btn">Shop Now</a>
+        </div>
+    </header>
 
-<button onclick="Game.click()">CLICK ⚡</button>
-<button onclick="Game.upgrade('core')">Upgrade Core</button>
-<button onclick="Game.upgrade('drone')">Add Drone</button>
+    <section class="store" id="store">
+        <h2>Featured Gear</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=500&auto=format&fit=crop&q=60" alt="Gaming Headset">
+                <h3>ProAudio Headset X1</h3>
+                <p class="price">$129.99</p>
+                <button class="btn" style="padding: 10px 20px; font-size: 14px;">Add to Cart</button>
+            </div>
+            
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1615663245857-ac93bb5c81f3?w=500&auto=format&fit=crop&q=60" alt="Mechanical Keyboard">
+                <h3>ClickMaster RGB Keyboard</h3>
+                <p class="price">$89.99</p>
+                <button class="btn" style="padding: 10px 20px; font-size: 14px;">Add to Cart</button>
+            </div>
 
-<script src="shared/config.js"></script>
-<script src="server/universeEngine.js"></script>
-<script src="server/balanceAI.js"></script>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1605773527852-c546a8584ea3?w=500&auto=format&fit=crop&q=60" alt="Gaming Mouse">
+                <h3>Precision Mouse V2</h3>
+                <p class="price">$59.99</p>
+                <button class="btn" style="padding: 10px 20px; font-size: 14px;">Add to Cart</button>
+            </div>
+        </div>
+    </section>
 
-<script src="client/api.js"></script>
-<script src="client/ui.js"></script>
-<script src="client/game.js"></script>
+    <footer>
+        <p>&copy; 2026 GamingJoy. Built for gamers, by gamers.</p>
+    </footer>
 
 </body>
 </html>
